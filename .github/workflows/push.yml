@@ -1,0 +1,20 @@
+name: ✅ PR Checks
+
+on: [pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - uses: actions/checkout@v3
+      - name: 🐧 Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: 📦 Install npm dependencies
+        run: npm i
+
+      - name: 📝 Run ESLint
+        run: npm run lint
