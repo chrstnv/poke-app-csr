@@ -46,13 +46,14 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.4.0",
     "@typescript-eslint/parser": "5.4.0",
+    "autoprefixer": "9.8.8",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
-    "postcss": "7.0.39",
+    "postcss": "8.1.0",
     "prettier": "2.8.8",
     "typescript": "4.5.2"
   },
