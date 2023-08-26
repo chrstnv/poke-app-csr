@@ -1,5 +1,6 @@
 import cn from 'classnames';
 
+import {Cards} from './Cards';
 import css from './Content.module.css';
 
 type Props = {
@@ -11,7 +12,7 @@ export const Content = ({className}: Props) => {
         <div className={cn(css.wrapper, className)}>
             <div className={css.root}>
                 <div className={css.filters}>Filters</div>
-                <div className={css.cards}>Cards</div>
+                <Cards className={css.cards} />
             </div>
         </div>
     );
