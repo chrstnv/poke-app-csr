@@ -1,0 +1,16 @@
+.root {    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 330px);
+
+    gap: 40px 26px;
+}
+
+
+@media (max-width: 690px) {
+    .root {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}

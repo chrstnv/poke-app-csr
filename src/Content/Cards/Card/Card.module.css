@@ -1,0 +1,170 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    
+    height: 420px;
+    max-width: 330px;
+
+    padding: 20px;
+
+    background-color: #E4FFE7;
+
+    border: 1px solid #D9D9D9;
+    border-radius: 20px; 
+}
+
+@media (max-width: 690px) {
+    .root {
+        width: 100%;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nameWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    display: inline-block;
+    margin-right: 8px;
+
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.badge {
+    padding: 4px;
+
+    border: 1px solid #000;
+    border-radius: 20px;
+
+    background-color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hp {
+    background-color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    composes: badge;
+}
+
+.favoriteInput {
+    display: none;
+}
+
+.favoriteCheckbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #fff;
+
+    border-radius: 50%;
+}
+
+.star {
+    filter: grayscale(1);
+}
+
+.favoriteInput:checked + .favoriteCheckbox .star {
+    filter: grayscale(0);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 20px;
+}
+
+.image {
+    height: 140px;
+
+    align-self: center;
+}
+
+.types {
+    margin-top: 16px;
+}
+
+.abilities {
+    margin-top: 16px;
+}
+
+.ability:not(:first-child) {
+    margin-top: 8px;
+}
+
+.abilityTitle {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.abilityDescription {
+    margin-top: 4px;
+
+    font-size: 10px;
+}
+
+.strokedText {
+    color: white;
+
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.type {
+    background-color: white;
+
+    composes: badge strokedText;
+}
+
+.type:not(:last-child) {
+    margin-right: 4px;
+}
+
+.grass {
+    background-color: #64BD68;
+
+    composes: type;
+}
+
+.poison {
+    background-color: #B58DF6;
+
+    composes: type;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: auto;
+}
+
+.number {
+    color: #787878;
+}
+
+.number::before {
+    content: '№ ';
+    color: #787878;
+}
+
+.stats {
+    font-size: 20px;
+    composes: strokedText;
+}
