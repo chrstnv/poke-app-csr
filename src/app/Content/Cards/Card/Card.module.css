@@ -1,22 +1,21 @@
+:root {
+	--accent: #fff;
+    --background: #fff;
+}
+
 .root {
     display: flex;
     flex-direction: column;
     
-    height: 420px;
+    height: 440px;
     max-width: 330px;
 
     padding: 20px;
 
-    background-color: #E4FFE7;
+    background-color: var(--background);
 
     border: 1px solid #D9D9D9;
     border-radius: 20px; 
-}
-
-@media (max-width: 690px) {
-    .root {
-        width: 100%;
-    }
 }
 
 .header {
@@ -27,6 +26,8 @@
 .nameWrapper {
     display: flex;
     align-items: center;
+
+    margin-right: 12px;
 }
 
 .name {
@@ -38,7 +39,7 @@
 }
 
 .badge {
-    padding: 4px;
+    padding: 4px 8px;
 
     border: 1px solid #000;
     border-radius: 20px;
@@ -54,6 +55,8 @@
 
     font-size: 12px;
     font-weight: 700;
+
+    white-space: nowrap;
 
     composes: badge;
 }
@@ -102,6 +105,8 @@
 
 .abilities {
     margin-top: 16px;
+
+    overflow: hidden;
 }
 
 .ability:not(:first-child) {
@@ -117,6 +122,12 @@
     margin-top: 4px;
 
     font-size: 10px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
 }
 
 .strokedText {
@@ -126,7 +137,7 @@
 }
 
 .type {
-    background-color: white;
+    background-color: var(--accent);
 
     composes: badge strokedText;
 }
@@ -136,15 +147,98 @@
 }
 
 .grass {
-    background-color: #64BD68;
-
-    composes: type;
+	--accent: #63BC5A;
+    --background: #e4ffe1;
 }
 
 .poison {
-    background-color: #B58DF6;
+	--accent: #B567CE;
+    --background: #e9d8ff;
+}
 
-    composes: type;
+.ground {
+	--accent: #D97845;
+    --background: #ffe6d8;
+}
+
+.electric {
+	--accent: #F4D23C;
+    --background: #fff5c6;
+}
+
+.fire {
+	--accent: #FF9D55;
+    --background: #fad5ba;
+}
+
+.water {
+	--accent: #5090D6;
+    --background: #adc9e8;
+}
+
+.dragon {
+	--accent: #0B6DC3;
+    --background: #b8deff;
+}
+
+.normal {
+	--accent: #919AA2;
+    --background: #e7e7e7;
+}
+
+.fighting {
+	--accent: #CE416B;
+    --background: #f5c1d0;
+}
+
+.flying {
+	--accent: #89AAE3;
+    --background: #dae4f3;
+}
+
+.rock {
+	--accent: #C5B78C;
+    --background: #f7f1df;
+}
+
+.bug {
+	--accent: #91C12F;
+    --background: #ddf5ae;
+}
+
+.ghost {
+	--accent: #333333;
+    --background: #d2d2d2;
+}
+
+.steel {
+	--accent: #5A8EA2;
+    --background: #bce3f3;
+}
+
+.psychic {
+	--accent: #FA7179;
+    --background: #ffdddf;
+}
+
+.ice {
+	--accent: #73CEC0;
+    --background: #e2fefa;
+}
+
+.dark {
+	--accent: #5A5465;
+    --background: #9e96ae;
+}
+
+.fairy {
+	--accent: #EC8FE6;
+    --background: #ffdffa;
+}
+
+.shadow {
+	--accent: #5269AD;
+    --background: #a3b3e3;
 }
 
 .footer {
