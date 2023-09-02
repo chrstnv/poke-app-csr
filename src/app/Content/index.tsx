@@ -22,7 +22,6 @@ const useFetchPokemons = () => {
                 setLoading(true);
                 const pokemons = await api.getList({limit: '500', offset: '0'}); // TODO: Pagination
 
-                console.log('LOGG: pokemons', pokemons);
                 setList(pokemons);
             } catch (error) {
                 setError(error);
