@@ -30,7 +30,7 @@ const useFetchPokemons = () => {
             }
         };
 
-        fetchPokemons().catch(console.error);
+        fetchPokemons().catch(() => undefined);
     }, []);
 
     return {list, loading, error};

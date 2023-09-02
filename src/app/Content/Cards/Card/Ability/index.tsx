@@ -28,7 +28,7 @@ const useFetchAbility = (id: string) => {
             }
         };
 
-        fetchAbility().catch(console.error);
+        fetchAbility().catch(() => undefined);
     }, [id]);
 
     return {entity, loading, error};
