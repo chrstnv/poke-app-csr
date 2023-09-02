@@ -29,7 +29,7 @@ const useFetchAbility = (id: string) => {
         };
 
         fetchAbility().catch(console.error);
-    }, []);
+    }, [id]);
 
     return {entity, loading, error};
 };

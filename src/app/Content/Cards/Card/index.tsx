@@ -33,7 +33,7 @@ const useFetchPokemon = (id: string) => {
         };
 
         fetchPokemon().catch(console.error);
-    }, []);
+    }, [id]);
 
     return {entity, loading, error};
 };
