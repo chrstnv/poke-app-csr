@@ -1,6 +1,6 @@
 import http from './';
 
-type GetListParams = {
+export type GetListParams = {
     limit: string;
     offset: string;
 };
@@ -10,14 +10,14 @@ export type PokemonListView = {
     url: string;
 };
 
-type GetListResponse = {
+export type GetListResponse = {
     count: number;
     next?: string;
     previous?: string;
     results: PokemonListView[];
 };
 
-type GetPokemonParams = {
+export type GetPokemonParams = {
     id: string;
 };
 
@@ -107,7 +107,7 @@ export type AbilityEntity = {
     effect_entries: EffectEntry[];
 };
 
-type GetAbilityParams = {
+export type GetAbilityParams = {
     id: string;
 };
 
@@ -117,7 +117,7 @@ class PokemonApi {
     getList(params: GetListParams) {
         const query = new URLSearchParams(params).toString();
 
-        return http.get<GetListResponse>(`/pokemon?${query}`).then(({data}) => data.results);
+        return http.get<GetListResponse>(`/pokemon?${query}`).then(({data}) => data);
     }
 
     getPokemon({id}: GetPokemonParams) {

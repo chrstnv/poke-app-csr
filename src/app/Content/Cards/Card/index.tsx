@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react';
 import cn from 'classnames';
 
-import type {PokemonEntity} from 'src/api/pokemon';
+import type {PokemonEntity, GetPokemonParams} from 'src/api/pokemon';
 import api, {STATS} from 'src/api/pokemon';
+import {useFetch} from 'src/hooks/useFetch';
 
 import css from './Card.module.css';
 
@@ -10,40 +10,16 @@ import Ability from './Ability';
 import star from './star.svg';
 
 type Props = {
-    url: string;
+    name: string;
 };
 
-const useFetchPokemon = (id: string) => {
-    const [entity, setEntity] = useState<PokemonEntity>({} as PokemonEntity);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<unknown | null>(null);
+const fetchPokemon = ({id}: Record<string, string>) => api.getPokemon({id});
 
-    useEffect(() => {
-        const fetchPokemon = async () => {
-            try {
-                setLoading(true);
-                const pokemon = await api.getPokemon({id});
-
-                setEntity(pokemon);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchPokemon().catch(() => undefined);
-    }, [id]);
-
-    return {entity, loading, error};
-};
-
-export const Card = ({url}: Props) => {
-    const pokemonUrl = new URL(url).pathname;
-
-    const id = pokemonUrl.match(/(\d*)\/$/)?.[1] || '';
-
-    const {entity, loading, error} = useFetchPokemon(id);
+export const Card = ({name}: Props) => {
+    const {data, loading, error} = useFetch<PokemonEntity, GetPokemonParams>({
+        params: {id: name},
+        fetcher: fetchPokemon,
+    });
 
     if (loading) {
         return <div className={css.root}>Loading...</div>;
@@ -54,7 +30,7 @@ export const Card = ({url}: Props) => {
     }
 
     // TODO: Написать геттеры
-    const {abilities, sprites, types, stats, name} = entity;
+    const {abilities, sprites, types, stats, id} = data;
 
     const hp = stats?.find(({stat}) => stat.name === STATS.HP)?.base_stat || 0;
     const attack = stats?.find(({stat}) => stat.name === STATS.ATTACK)?.base_stat || 0;
