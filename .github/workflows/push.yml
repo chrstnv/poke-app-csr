@@ -16,5 +16,9 @@ jobs:
       - name: 📦 Install npm dependencies
         run: npm i
 
+      - name: 🧱 Run Build
+        run: CI=true npm run build
+        
       - name: 📝 Run ESLint
         run: npm run lint
+    
