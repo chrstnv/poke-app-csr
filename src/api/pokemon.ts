@@ -10,7 +10,7 @@ export type PokemonListView = {
     url: string;
 };
 
-type GetListResponse = {
+export type GetListResponse = {
     count: number;
     next?: string;
     previous?: string;
@@ -117,7 +117,7 @@ class PokemonApi {
     getList(params: GetListParams) {
         const query = new URLSearchParams(params).toString();
 
-        return http.get<GetListResponse>(`/pokemon?${query}`).then(({data}) => data.results);
+        return http.get<GetListResponse>(`/pokemon?${query}`).then(({data}) => data);
     }
 
     getPokemon({id}: GetPokemonParams) {
