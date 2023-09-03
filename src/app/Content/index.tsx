@@ -1,7 +1,7 @@
-import {useEffect, useState} from 'react';
 import cn from 'classnames';
 
-import type {PokemonListView} from 'src/api/pokemon';
+import type {PokemonListView, GetListParams} from 'src/api/pokemon';
+import {useFetch} from 'src/hooks/useFetch';
 import api from 'src/api/pokemon';
 
 import {Cards} from './Cards';
@@ -11,33 +11,13 @@ type Props = {
     className?: string;
 };
 
-const useFetchPokemons = () => {
-    const [list, setList] = useState<PokemonListView[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<unknown | null>(null);
-
-    useEffect(() => {
-        const fetchPokemons = async () => {
-            try {
-                setLoading(true);
-                const pokemons = await api.getList({limit: '500', offset: '0'}); // TODO: Pagination
-
-                setList(pokemons);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchPokemons().catch(() => undefined);
-    }, []);
-
-    return {list, loading, error};
-};
+const fetchList = ({limit, offset}: Record<string, string>) => api.getList({limit, offset});
 
 export const Content = ({className}: Props) => {
-    const {loading, error, list} = useFetchPokemons();
+    const {data, loading, error} = useFetch<PokemonListView[], GetListParams>({
+        params: {limit: '500', offset: '0'},
+        fetcher: fetchList,
+    });
 
     if (loading) {
         return <div>Loading...</div>;
@@ -51,7 +31,7 @@ export const Content = ({className}: Props) => {
         <div className={cn(css.wrapper, className)}>
             <div className={css.root}>
                 <div className={css.filters}>Filters</div>
-                <Cards className={css.cards} list={list} />
+                <Cards className={css.cards} list={data} />
             </div>
         </div>
     );

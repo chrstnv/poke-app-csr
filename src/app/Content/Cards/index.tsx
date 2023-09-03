@@ -17,8 +17,8 @@ export const Cards = ({list, className}: Props) => {
 
     return (
         <div className={cn(css.root, className)}>
-            {list.map(({url}) => (
-                <Card key={url} url={url} />
+            {list.map(({name}) => (
+                <Card key={name} name={name} />
             ))}
         </div>
     );

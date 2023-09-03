@@ -1,7 +1,6 @@
-import {useEffect, useState} from 'react';
-
-import type {AbilityEntity} from 'src/api/pokemon';
+import type {AbilityEntity, GetAbilityParams} from 'src/api/pokemon';
 import api, {LANGUAGES} from 'src/api/pokemon';
+import {useFetch} from 'src/hooks/useFetch';
 
 import css from '../Card.module.css';
 
@@ -9,33 +8,13 @@ type Props = {
     name: string;
 };
 
-const useFetchAbility = (id: string) => {
-    const [entity, setEntity] = useState<AbilityEntity>({} as AbilityEntity);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<unknown | null>(null);
-
-    useEffect(() => {
-        const fetchAbility = async () => {
-            try {
-                setLoading(true);
-                const ability = await api.getAbility({id});
-
-                setEntity(ability);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchAbility().catch(() => undefined);
-    }, [id]);
-
-    return {entity, loading, error};
-};
+const fetchAbility = ({id}: Record<string, string>) => api.getAbility({id});
 
 export const Ability = ({name}: Props) => {
-    const {entity, loading, error} = useFetchAbility(name);
+    const {data, loading, error} = useFetch<AbilityEntity, GetAbilityParams>({
+        params: {id: name},
+        fetcher: fetchAbility,
+    });
 
     if (loading) {
         return <div className={css.abilityDescription}>{`${name} description is loading...`}</div>;
@@ -46,7 +25,7 @@ export const Ability = ({name}: Props) => {
     }
 
     // TODO: Написать геттеры
-    const {effect_entries, name: abilityName} = entity;
+    const {effect_entries, name: abilityName} = data;
 
     const description = effect_entries?.find(({language}) => language?.name === LANGUAGES.EN)?.effect;
 

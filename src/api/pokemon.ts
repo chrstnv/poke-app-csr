@@ -1,6 +1,6 @@
 import http from './';
 
-type GetListParams = {
+export type GetListParams = {
     limit: string;
     offset: string;
 };
@@ -17,7 +17,7 @@ type GetListResponse = {
     results: PokemonListView[];
 };
 
-type GetPokemonParams = {
+export type GetPokemonParams = {
     id: string;
 };
 
@@ -107,7 +107,7 @@ export type AbilityEntity = {
     effect_entries: EffectEntry[];
 };
 
-type GetAbilityParams = {
+export type GetAbilityParams = {
     id: string;
 };
 
